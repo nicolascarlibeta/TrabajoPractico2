@@ -1,7 +1,10 @@
 package ar.edu.unlu.poo;
 
-public class Cuenta {
+import java.util.Random;
+
+public abstract class Cuenta {
 	
+	protected int id = new Random().nextInt(10000);
 	protected ClienteBanco cliente;
 	protected float saldo = 0;
 	
@@ -10,25 +13,13 @@ public class Cuenta {
         this.cliente = cliente;
     }
 	
-	public boolean comprar(float precio) {
-		if(saldo > 0 && saldo >= precio) {
-			saldo -= precio;
-			System.out.println("La compra se ha realizado con exito");
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean cargar(float monto) {
-		if(monto > 0) {
-			saldo += monto;
-			return true;
-		}
-		return false;
-	}
+    //MÉTODOS ABSTRACTOS (DEFINICIÓN)
+	public abstract void comprar(float precio);
+	public abstract void cargar(float monto);
 	
 	public float getSaldo() {
 		return saldo;
 	}
+	
 
 }

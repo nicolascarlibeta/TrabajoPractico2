@@ -13,11 +13,17 @@ public class PCySalario extends PorComision{
     }
 
     public float calcularSueldo(){
-    	return saldo + montoTotalVentas + ((montoTotalVentas * porcentaje) / 100) + bonoCumple();
+    	bonoCumple();
+    	saldo += montoTotalVentas + ((montoTotalVentas * porcentaje) / 100);
+    	return saldo;
     }
     
-    public float bonoCumple() {
-       	return super.bonoCumple() + 1000;
+    public boolean bonoCumple() {
+       	if(super.bonoCumple()) {
+       		saldo += 1000;
+       		return true;
+       	}
+       	return false;
     }
 
 

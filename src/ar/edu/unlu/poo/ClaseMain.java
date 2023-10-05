@@ -3,14 +3,17 @@ package ar.edu.unlu.poo;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class ClaseMain {
 
     public static void main(String[] args) throws ParseException{
-
+    		
         TrabajoPractico tp2 = new TrabajoPractico();
-
+        
         //Ejercicio 1: Club de Futbol
         //tp2.ejercicio1();
 
@@ -21,10 +24,10 @@ public class ClaseMain {
         //tp2.ejercicio3();
 
         //Ejercicio 4
-        tp2.ejercicio4();
+        //tp2.ejercicio4();
 
         //Ejercicio 5
-        //tp1.ejercicio5();
+        //tp2.ejercicio5();
 
         //Ejercicio 6: Estacion de Servicio
         //tp2.ejercicio6();
@@ -39,13 +42,13 @@ public class ClaseMain {
         //tp2.ejercicio9();
 
         //Ejercicio 10
-        //tp1.ejercicio10();
+        //tp2.ejercicio10();
 
         //Ejercicio 11
         //tp2.ejercicio11();
 
         //Ejercicio 12
-        //tp1.ejercicio12();
+        //tp2.ejercicio12();
 
         //Ejercicio 13
         //tp2.ejercicio13();

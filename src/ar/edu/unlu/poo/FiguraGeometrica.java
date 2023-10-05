@@ -1,6 +1,6 @@
 package ar.edu.unlu.poo;
 
-public class FiguraGeometrica {
+public abstract class FiguraGeometrica {
 
     protected String nombre = "";
     protected float area;

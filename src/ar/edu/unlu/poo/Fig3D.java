@@ -1,6 +1,6 @@
 package ar.edu.unlu.poo;
 
-public class Fig3D extends FiguraGeometrica{
+public abstract class Fig3D extends FiguraGeometrica{
 
     protected float volumen;
 

@@ -80,7 +80,7 @@ public class Estacion {
     }
 
     //EmpleadosOrdenadosXMontoTotal()
-    public void getEmpleadosXMontoTotal(){
+    public List<Map.Entry<Empleado, Float>> getEmpleadosXMontoTotal(){
         Venta ventaActual;
         Hashtable<Empleado, Double> empleados = new Hashtable<>();
         for(int i = 0; i < ventas.size(); i++){
@@ -93,33 +93,26 @@ public class Estacion {
                 empleados.put(ventaActual.getEmpleado(),ventaActual.getTotal());
             }
         }
-        List<Map.Entry<Empleado, Integer>> empXTotal = new ArrayList(empleados.entrySet());
+        List<Map.Entry<Empleado, Float>> empXTotal = new ArrayList(empleados.entrySet());
         empXTotal.sort(Map.Entry.comparingByValue());
-        for(int i = 0; i < empXTotal.size(); i++){
-            System.out.println(empXTotal.get(i).getKey() + "MONTO TOTAL: $" + empXTotal.get(i).getValue() + "\n");
-        }
+        return empXTotal;
     }
 
     //ListaTop10Clientes()
-    public List<ClienteEstacion> getListaTop10Clientes(){
-        Venta ventaActual;
-        Hashtable<ClienteEstacion, Double> clientes = new Hashtable<>();
-        List<ClienteEstacion> top10 = new ArrayList<>();
-        for(int i = 0; i < ventas.size(); i++){
-            ventaActual = ventas.get(i);
-            if(clientes.containsKey(ventaActual.getCliente())){
-                clientes.put(ventaActual.getCliente(),
-                        clientes.get(ventaActual.getCliente()) + ventaActual.getTotal());
+    public List<Map.Entry<ClienteEstacion, Float>> getListaTop10Clientes(){
+        Hashtable<ClienteEstacion, Float> clientes = new Hashtable<>();
+        for(Venta v: ventas){
+            if(clientes.containsKey(v.getCliente())){
+                clientes.put(v.getCliente(),
+                        (float) (clientes.get(v.getCliente()) + v.getTotal()));
             }
             else{
-                clientes.put(ventaActual.getCliente(),ventaActual.getTotal());
+                clientes.put(v.getCliente(),(float) v.getTotal());
             }
         }
-        List<Map.Entry<ClienteEstacion, Double>> clienteXTotal = new ArrayList<>(clientes.entrySet());
-        clienteXTotal.sort(Map.Entry.comparingByValue());
-        for(int i = 0; i < clienteXTotal.size(); i++){
-            top10.set(i, clienteXTotal.get(i).getKey());
-        }
+        List<Map.Entry<ClienteEstacion, Float>> top10 = new ArrayList<>(clientes.entrySet());
+        top10.sort(Map.Entry.comparingByValue());
+        
         return top10;
     }
 

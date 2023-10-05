@@ -14,12 +14,17 @@ public class FullTime extends Empleado{
         this.saldo = saldo;
     }
     
-    public float bonoCumple() {
-       	return super.bonoCumple() + 1000;
+    public boolean bonoCumple() {
+       	if(super.bonoCumple()) {
+       		saldo += 1000;
+       		return true;
+       	}
+       	return false;
     }
     
     public float calcularSueldo(){
-        return saldo + bonoCumple();
+    	bonoCumple();
+        return saldo;
     }
 
 

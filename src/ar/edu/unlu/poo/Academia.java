@@ -1,10 +1,11 @@
 package ar.edu.unlu.poo;
 
 import java.util.*;
+import java.util.ArrayList;
 
 public class Academia {
 
-    private ArrayList<Diagramacion> diagramaciones = new ArrayList<>();
+    private ArrayList<Diagramacion> diagramaciones = new ArrayList<Diagramacion>();
 
     public boolean addDiagramacion(Diagramacion diagramacion){
         return diagramaciones.add(diagramacion);

@@ -22,17 +22,23 @@ public class PorComision extends Empleado{
     }
     
     public void setMontoTotalVentas(float montoTotalVentas) {
-    	if(montoTotalVentas > 0) {
+    	if(montoTotalVentas >= 0) {
     		this.montoTotalVentas = montoTotalVentas;    		
     	}
 	}
 
-    public float bonoCumple() {
-       	return super.bonoCumple() + ((montoTotalVentas * 50) / 100);
+    public boolean bonoCumple() {
+    	if(super.bonoCumple()) {
+    		saldo += ((montoTotalVentas * 50) / 100);
+    		return true;
+    	}
+    	return false;
     }
     
     public float calcularSueldo(){
-        return montoTotalVentas + ((montoTotalVentas * porcentaje) / 100) + bonoCumple();
+    	bonoCumple();
+    	saldo += montoTotalVentas + ((montoTotalVentas * porcentaje) / 100);
+        return saldo;
     }
 
 }

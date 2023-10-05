@@ -16,7 +16,7 @@ public class PorHora extends Empleado{
 
     public float calcularSueldo(){
         if(cantidadHoras > 1){
-            return saldo * cantidadHoras;
+            return (saldo * cantidadHoras) + (((saldo * cantidadHoras) * 20) / 100);
         }
         return saldo * cantidadHoras;
     }

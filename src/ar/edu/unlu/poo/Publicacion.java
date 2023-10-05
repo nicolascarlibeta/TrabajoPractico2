@@ -10,8 +10,4 @@ public abstract class Publicacion {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
-    public void quitarEditor(){
-        editor = "<0>";
-    }
 }

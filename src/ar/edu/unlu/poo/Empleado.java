@@ -55,12 +55,12 @@ public class Empleado {
         return cuit;
     }
 
-    public float bonoCumple() {
-    	float saldo = 0;
+    public boolean bonoCumple() {
        	if(LocalDate.now().getMonth().equals(fechaNacimiento.getMonth())) {
-            saldo = 2000;
+            saldo += 2000;
+            return true;
         }
-       	return saldo;
+       	return false;
     }
     
     public float calcularSueldo(){

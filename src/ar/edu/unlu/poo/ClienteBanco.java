@@ -19,5 +19,9 @@ public class ClienteBanco {
         this.telefono = telefono;
 
     }
+    
+    public String getNombreCompleto() {
+		return nombreCompleto;
+	}
 
 }

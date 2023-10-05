@@ -36,7 +36,8 @@ public class Alquiler {
         return "ID: " + id + " - "
                 + "FECHA: " + fecha + " - "
                 + "CLIENTE: " + cliente + " - "
-                + "VEHICULO: " + presupuesto.getVehiculo() + " - "
+                + "VEHICULO: " + presupuesto.getVehiculo().getDescripcion() + " - "
+        		+ "PATENTE: " + presupuesto.getVehiculo().getPatente() + " - "
                 + "CANTIDAD DIAS ALQUILER: " + presupuesto.getCantidadDiasAlquiler() + " - "
                 + "MONTO: $" + presupuesto.getMonto() + "\n";
     }

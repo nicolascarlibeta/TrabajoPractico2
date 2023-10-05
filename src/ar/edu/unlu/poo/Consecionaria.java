@@ -8,23 +8,15 @@ public class Consecionaria {
     private ArrayList<Alquiler> alquileres = new ArrayList<>();
 
     public boolean addVehiculo(Vehiculo vehiculo){
-        for(Vehiculo v: vehiculos){
-            if(v.getPatente().equals(vehiculo.getPatente())){
-                return false;
-            }
-        }
         return vehiculos.add(vehiculo);
     }
-
-    public boolean prestarVehiculo(ClienteAuto cliente, Vehiculo vehiculo,
-                                   int dias){
-        Presupuesto nuevoPresupuesto = new Presupuesto(vehiculo,dias);
-        Alquiler nuevoAlquiler = new Alquiler(cliente,nuevoPresupuesto);
-        return alquileres.add(nuevoAlquiler);
+    
+    public boolean addAlquiler(Alquiler alquiler){
+        return alquileres.add(alquiler);
     }
 
     public void getMontoTotalXCliente(ClienteAuto cliente){
-        float montoTotal = 0;
+        double montoTotal = 0;
         for(Alquiler a: alquileres){
             if(a.getCliente().equals(cliente)){
                 montoTotal += a.getPresupuesto().getMonto();
@@ -34,12 +26,20 @@ public class Consecionaria {
     }
 
     public void getMontoTotalXAlquiler(){
-        float montoTotal = 0;
+        double montoTotal = 0;
         for(Alquiler a: alquileres){
             montoTotal += a.getPresupuesto().getMonto();
         }
         System.out.println("El MONTO TOTAL de todos los alquileres es de $" + montoTotal);
     }
+    
+    public ArrayList<Alquiler> getAlquileres() {
+		return alquileres;
+	}
+    
+    public ArrayList<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
 
 
 

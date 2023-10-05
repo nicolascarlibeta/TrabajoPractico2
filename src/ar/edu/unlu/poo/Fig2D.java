@@ -1,10 +1,6 @@
 package ar.edu.unlu.poo;
 
-public class Fig2D extends FiguraGeometrica{
-
-    //CONSTRUCTOR
-    public Fig2D(){
-    }
+public abstract class Fig2D extends FiguraGeometrica{
 
     //MÉTODO GENÉRICO
     public float calcularArea(){

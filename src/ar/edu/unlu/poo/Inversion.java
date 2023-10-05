@@ -21,20 +21,40 @@ public class Inversion {
 		this.fecha = LocalDate.parse(fecha,formato);
 		this.cuenta = cuenta;
 		this.monto = monto;
+		if(cuenta.getSaldo() < monto) {
+			cancelarInversion();
+		}
 	}
 	
 	public void obtenerInteres() {
+		LocalDate cuarentaDias = fecha.plusDays(40);
 		LocalDate treintaDias = fecha.plusDays(30);
-		if(estado && LocalDate.now().isAfter(treintaDias)) {
+		if(estado && LocalDate.now().isAfter(cuarentaDias)) {
 			monto += ((monto * 40) / 100);
 			cuenta.cargar(monto);
+			cuenta.setMontoInvertido(0);
 			estado = false;
 			System.out.println("El interes del 40% se obtuvo con exito");
+		}
+		else if(!estado) {
+			if(LocalDate.now().isAfter(treintaDias)) {
+			monto += ((monto * 5) / 100);
+			cuenta.cargar(monto);
+			cuenta.setMontoInvertido(0);
+			System.out.println("Se obtuvo con exito un interes del 5%");
+			}
+			else {
+				System.out.println("La inversion ya esta fuera de operacion");
+			}
 		}
 		else {
 			System.out.println("Debe esperar hasta 30 dias para obtener el interes");
 		}
 		
+	}
+	
+	public void cancelarInversion() {
+		estado = false;
 	}
 	
 	public CuentaNormal getCuenta() {

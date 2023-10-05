@@ -2,6 +2,7 @@ package ar.edu.unlu.poo;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Venta {
@@ -13,7 +14,7 @@ public class Venta {
     private Empleado empleado;
     private Expendedor expendedor;
     private int cantidadLitros;
-    private double total;
+    private float total;
     private boolean descuento = false;
 
     //CONSTRUCTOR
@@ -24,7 +25,7 @@ public class Venta {
         this.expendedor = expendedor;
         this.patente = patente;
         this.cantidadLitros = cantidadLitros;
-        total = expendedor.getCombustible().getPrecioXLitro() * cantidadLitros;
+        total = (float)expendedor.getCombustible().getPrecioXLitro() * cantidadLitros;
         
     }
 
@@ -60,20 +61,42 @@ public class Venta {
         return cantidadLitros;
     }
     
-    public void setTotal(double total) {
-		this.total = total;
+    public void setTotal(float total) {
+    	if(total >= 0) {
+    		this.total = total;    		
+    	}
 	}
     
-    public boolean setDescuento(List<Cliente> top10clientes, List<Empleado> topEmpleados, boolean descuento) {
-    	if(top10clientes.contains(cliente)) {
-    		total -= ((total * 5) / 100);
-    		return true;
+    public boolean setDescuento(List<Map.Entry<ClienteEstacion, Float>> top10clientes, List<Map.Entry<Empleado, Float>> topEmpleados, boolean descuento) {
+    	boolean descuentoAplicado = false;
+    	for(Map.Entry<ClienteEstacion, Float> c: top10clientes) {
+    		if(c.getKey().equals(cliente)) {
+    			total -= ((total * 5) / 100);
+    			descuentoAplicado = true;
+    		}
     	}
-    	if(topEmpleados.contains(empleado) && !this.descuento && descuento) {
-    		total -= ((total * 10) / 100);
-    		return true;
+    	if(descuento) {
+    		for(Map.Entry<Empleado, Float> e: topEmpleados) {
+        		if(e.getKey().equals(empleado)) {
+        			total -= ((total * 10) / 100);
+        			descuentoAplicado = true;
+        		}
+        	}
     	}
-    	return false;
+    	return descuentoAplicado;
+    }
+    
+  //Metodo toString()
+    public String toString(){
+        return "ID: " + id + "-"
+                + "FECHA: " + fecha + " - "
+                + "ID CLIENTE: " + cliente.getId() + " - "
+                + "NOMBRE COMPLETO: " + cliente.getNombreCompleto() + " - "
+                + "EMPLEADO: " + empleado.getNombreCompleto() + " - "
+                + "ID EXPENDEDOR: " + expendedor.getId() + " - "
+                + "COMBUSTIBLE: " + expendedor.getCombustible().getDescripcion() + " - "
+                + "CANT.LITROS: " + cantidadLitros + " - "
+                + "MONTO TOTAL: " + total + "\n";
     }
 
 }

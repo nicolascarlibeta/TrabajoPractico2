@@ -4,10 +4,10 @@ public class Combustible {
 
     private String descripcion = "";
     private TipoCombustible tipo;
-    private double precioXLitro = 0.0;
+    private float precioXLitro = 0;
 
     //CONSTRUCTOR
-    public Combustible(String descripcion, int tipo, double precioXLitro){
+    public Combustible(String descripcion, int tipo, float precioXLitro){
         this.descripcion = descripcion;
         this.tipo = TipoCombustible.values()[tipo];
         this.precioXLitro = precioXLitro;
@@ -25,7 +25,7 @@ public class Combustible {
     public TipoCombustible getTipo() {
         return tipo;
     }
-    public boolean setPrecio(double precio) {
+    public boolean setPrecio(float precio) {
     	if(precio > 0) {
     		precioXLitro = precio;
     		return true;
